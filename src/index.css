@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --color-brand: #FF0000
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+
+  /* tailwind css 사용한거 */
+  @apply flex flex-col items-center;
+  @apply bg-zinc-900 text-green-50;
+}
+
+#root {
+  @apply w-full max-w-screen-2xl;
+}

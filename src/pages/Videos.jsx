@@ -15,16 +15,6 @@ export default function Videos() {
     }
   }); 
 
-  const test = useQuery({
-    queryKey: ['videos', keyword],
-    queryFn: () => {
-      // const youtube = new FakeYoutube();
-      const youtube = new Youtube();
-      return youtube.search(keyword);
-    }
-  }); 
-  console.log(test)
-
   return(
     <>
       <div>Videos {keyword ? `${keyword}` : '🔥'}</div>

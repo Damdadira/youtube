@@ -1,11 +1,7 @@
-import axios from 'axios';
-
 export default class Youtube {
-  constructor() {
-    this.httpClient = axios.create({
-      baseURL: 'https://www.googleapis.com/youtube/v3',
-      params: { key: import.meta.env.VITE_SOME_KEY }
-    })
+  constructor(apiClient) {
+    console.log(apiClient)
+    this.apiClient = apiClient;
   }
 
   async search (keyword) {
@@ -14,8 +10,8 @@ export default class Youtube {
 
   // 앞에 #붙이면 private 함수
   async #searchByKeyword(keyword){
-    return this.httpClient
-      .get('search', { 
+    return this.apiClient
+      .search({
         params: {
           part: 'snippet',
           maxResults: 25,
@@ -28,8 +24,8 @@ export default class Youtube {
   }
 
   async #mostPopular(){
-    return this.httpClient
-      .get('videos', { 
+    return this.apiClient
+      .videos({
         params: {
           part: 'snippet',
           maxResults: 25,

@@ -4,11 +4,12 @@ export default class Youtube {
     this.apiClient = apiClient;
   }
 
+  // 공개 함수
   async search (keyword) {
     return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular();
   }
 
-  // 앞에 #붙이면 private 함수
+  // 앞에 #붙이면 private 함수(비공개 함수)
   async #searchByKeyword(keyword){
     return this.apiClient
       .search({

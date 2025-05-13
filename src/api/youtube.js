@@ -29,6 +29,19 @@ export default class Youtube {
       .then(items => items.map(item => ({ ...item, id: item.id.videoId })));
   }
 
+  async getComments(videoId) {
+    return this.apiClient
+      .commentThreads({
+        params: {
+          part: 'snippet,replies',
+          videoId,
+          maxResults: 20,
+          order: 'relevance',
+        }
+      })
+      .then(res => res.data.items);
+  }
+
   // 앞에 #붙이면 private 함수(비공개 함수)
   async #searchByKeyword(keyword){
     return this.apiClient

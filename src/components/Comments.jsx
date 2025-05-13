@@ -15,23 +15,25 @@ export default function Comments({ videoId }) {
       {isLoading && <p>Loading comments...</p>}
       {error && <p>Failed to load comments 😢</p>}
       <ul className='space-y-4'>
-        {comments.map(item => {
-        const comment = item.snippet.topLevelComment.snippet;
-        return (
-          <li key={item.id}>
-            <p>{comment.authorDisplayName}: {comment.textDisplay}</p>
-            {item.replies?.comments && (
-              <ul className='ml-4 border-l pl-2'>
-                {item.replies.comments.map(reply => (
-                  <li key={reply.id}>
-                    <p>{reply.snippet.authorDisplayName}: {reply.snippet.textDisplay}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        );
-      })}
+        {comments && comments.map(item => {
+          const comment = item.snippet.topLevelComment.snippet;
+          return (
+            <li key={item.id}>
+              <p>{comment.authorDisplayName}: {comment.textDisplay}</p>
+
+              {/* 대댓글 */}
+              {item.replies?.comments && (
+                <ul className='ml-4 border-l pl-2'>
+                  {item.replies.comments.map(reply => (
+                    <li key={reply.id}>
+                      <p>{reply.snippet.authorDisplayName}: {reply.snippet.textDisplay}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </section>
   )

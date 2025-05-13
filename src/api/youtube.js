@@ -25,7 +25,8 @@ export default class Youtube {
           type: 'video'
         }
       })
-      .then(res => res.data.items);
+      .then(res => res.data.items)
+      .then(items => items.map(item => ({ ...item, id: item.id.videoId })));
   }
 
   // 앞에 #붙이면 private 함수(비공개 함수)

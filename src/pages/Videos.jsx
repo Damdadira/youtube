@@ -8,7 +8,8 @@ export default function Videos() {
   const { youtube } = useYoutubeApi();
   const { isLoading, error, data: videos } = useQuery({
     queryKey: ['videos', keyword],
-    queryFn: () => youtube.search(keyword)
+    queryFn: () => youtube.search(keyword),
+    staleTime: 1000 * 60 * 1
   }); 
 
   return(
